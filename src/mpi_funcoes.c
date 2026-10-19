@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include "mpi.h"
+
 int main(int argc, char *argv[]) { /* mpi_funcoes.c  */
-int meu_ranque, num_procs; 
-int versao, subversao,  aux, ret;
-double tempo_inicial, tempo_final; 
-char maquina[MPI_MAX_PROCESSOR_NAME];
+    int meu_ranque, num_procs; 
+    int versao, subversao,  aux, ret;
+    double tempo_inicial, tempo_final; 
+    char maquina[MPI_MAX_PROCESSOR_NAME];
     /* Inicia o MPI. Em caso de erro aborta o programa */
     ret = MPI_Init(&argc, &argv);
     if (ret != MPI_SUCCESS) {
@@ -21,7 +22,7 @@ char maquina[MPI_MAX_PROCESSOR_NAME];
     MPI_Get_processor_name(maquina, &aux);
     if (meu_ranque == 0){
         printf("Versão do MPI  = %d Subversão = %d \n", versao, subversao);
-        printf("Número de tarefas = %d Meu ranque = %d Executando em  %s\n", num_procs, meu_ranque, maquina);
+        printf("Número de tarefas = %d Meu ranque = %d Executando em \"%s\"\n", num_procs, meu_ranque, maquina);
         tempo_final = MPI_Wtime();
         printf("Foram gastos %3.6f segundos com precisão de %3.3e segundos\n",tempo_final-tempo_inicial, MPI_Wtick());
 
